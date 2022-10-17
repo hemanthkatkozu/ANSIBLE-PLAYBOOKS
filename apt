@@ -1,6 +1,0 @@
-
-
-- name: Install the "nginx" 
-  ansible.builtin.apt:
-    name: nginx=latest
-    state: present
