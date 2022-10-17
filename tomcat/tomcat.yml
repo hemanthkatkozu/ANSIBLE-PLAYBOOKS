@@ -17,7 +17,7 @@
   command: chdir=/usr/share /bin/tar xvf /opt/apache-tomcat-* -C /opt/ creates=/opt/apache-tomcat-*
 
 - name: Symlink install directory
-  file: src=/opt/apache-tomcat-TOMCAT-VERSION path=/usr/share/tomcat state=link
+  file: src=/opt/apache-tomcat-* path=/usr/share/tomcat state=link
 
 - name: Change ownership of Tomcat installation
   file: path=/usr/share/tomcat/ owner=tomcat group=tomcat state=directory recurse=yes
