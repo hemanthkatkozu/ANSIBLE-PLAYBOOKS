@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    stages {
+        stage ('git checkout') {
+            steps {
+                script {
+                    sh '''
+                    rm -rf $WORKSPACE/* $WORKSPACE/.git
+                    git init
+                    git remote add -f origin https://github.com/hemanthkatkozu/ANSIBLE-PLAYBOOKS.git || true
+                    git config core.sparseCheckout true
+                    echo "/$CHOICE" > .git/info/sparse-checkout
+                    git checkout origin/master
+                    ls -la
+                    '''
+                }
+            }
+        }
+        stage ('Playbook-modification') {
+            steps {
+                sh '''
+                cd $CHOICE
+                ls -la
+                sed -i "s/TYPE/$REPO/g" $FILE 
+                cat $FILE '''
+            } 
+        }
+    }
+}
